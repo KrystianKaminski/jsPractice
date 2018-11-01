@@ -1,34 +1,55 @@
-// CLOSURES
+// BIND CALL AND APPLY
 
-const retirement = retirementAge => {
-    return yearOfBirth => {
-        const a = ' years left until retirement'
-        const age = 2018 - yearOfBirth
-        console.log((retirementAge - age) + a)
-    }
-}
-
-const retirementUS = retirement(66);
-const retirementGermany = retirement(65)
-const retirementIceland = retirement(67);
-
-retirementUS(1990);
-retirementGermany(1990)
-retirementIceland(1990)
-// retirement(66)(1990);
-
-const interviewQuestion = job => {
-    return name => {
-        if (job === 'designer') {
-            console.log(`${name}, can you please explain what UX design is?`);
-        } else if (job === 'teacher') {
-            console.log(`What subject do you teach, ${name}?`)
-
-        } else {
-            console.log(`Hello ${name}, what do you do?`)
-
+const john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function (style, timeOfDay) {
+        if (style === 'formal') {
+            console.log(`Good ${timeOfDay} ladies and gentlemen! I'm ${this.name}, I'm a ${this.job} and I'm ${this.age} years old.`)
+        } else if (style === 'friendly') {
+            console.log(`Hey! What's up? I'm ${this.name}, I'm a ${this.job} and I'm ${this.age} years old. Have a nice ${timeOfDay}.`)
         }
     }
 }
 
-interviewQuestion('teacher')('Krystian')
+const emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+}
+
+
+john.presentation('formal', 'morning');
+
+john.presentation.call(emily, 'friendly', 'afternoon')
+
+john.presentation.apply(emily, ['friendly', 'afternoon'])
+
+const johnFriendly = john.presentation.bind(john, 'friendly')
+
+johnFriendly('morning')
+johnFriendly('night')
+
+const emilyFormal = john.presentation.bind(emily, 'formal')
+
+emilyFormal('morning')
+emilyFormal('noon')
+
+const years = [1990, 1965, 1937, 2005, 1998]
+
+const arrayCalc = (array, fn) => {
+    const arrRes = [];
+    for (let i = 0; i < array.length; i++) {
+        arrRes.push(fn(array[i]))
+    }
+    return arrRes;
+}
+
+const calculateAge = element => 2018 - element;
+const isFullAge = (limit, element) => element >= limit
+
+const ages = arrayCalc(years, calculateAge)
+const fullJapan = arrayCalc(ages, isFullAge.bind(this, 20))
+console.log(ages)
+console.log(fullJapan)
