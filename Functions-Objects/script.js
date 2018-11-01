@@ -1,40 +1,29 @@
-// Primitives vs objects
+// Passing functions as arguments
 
+const years = [1990, 1965, 1937, 2005, 1998]
 
-// Creating a copy
-let a = 23;
-let b = a;
-a = 46;
-console.log(a)
-console.log(b)
-
-
-// No copy was created
-const obj1 = {
-    name: 'John',
-    age: '26'
+const arrayCalc = (array, fn) => {
+    const arrRes = [];
+    for (let i = 0; i < array.length; i++) {
+        arrRes.push(fn(array[i]))
+    }
+    return arrRes;
 }
 
-const obj2 = obj1
-
-obj1.age = 30
-console.log(obj1.age)
-console.log(obj2.age)
-
-// Functions
-
-let age = 27;
-const obj = {
-    name: 'Krystian',
-    city: 'Lublin'
+const calculateAge = element => 2018 - element;
+const isFullAge = element => element >= 18
+const maxHeartRate = element => {
+    if (element >= 18 && element <= 81) {
+        return Math.round(206.9 - (0.67 * element))
+    } else {
+        return 'You are too old or too young, sorry'
+    }
 }
 
-function change(a, b) {
-    a = 30
-    b.city = 'Warszawa'
-}
+const ages = arrayCalc(years, calculateAge)
+const isFullAges = arrayCalc(ages, isFullAge)
+const maximumHeartRate = arrayCalc(ages, maxHeartRate)
 
-change(age, obj);
-
-console.log(age);
-console.log(obj.city);
+console.log(ages)
+console.log(isFullAges)
+console.log(maximumHeartRate)
