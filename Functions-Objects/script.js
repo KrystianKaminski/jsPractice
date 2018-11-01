@@ -1,31 +1,30 @@
-// Function constructor
+// Object.create
 
-const Person = function (name, yearOfBirth, job) {
-    this.name = name;
-    this.yearOfBirth = yearOfBirth;
-    this.job = job;
+const personProto = {
+    calculateAge: function () {
+        console.log(2018 - this.yearOfBirth)
+    }
 }
 
-Person.prototype.calculateAge = function () {
-    console.log(2018 - this.yearOfBirth);
-}
+const john = Object.create(personProto);
+console.log(john);
 
-Person.prototype.lastName = 'Smith';
+john.name = 'John'
+john.yearOfBirth = 1990
+john.job = 'teacher'
 
+console.log(john)
 
-const john = new Person('John', 1990, 'teacher');
-const jane = new Person('Jane', 1969, 'designer');
-const mark = new Person('Mark', 1948, 'retired');
+const jane = Object.create(personProto, {
+    name: {
+        value: 'Jane'
+    },
+    yearOfBirth: {
+        value: 1969
+    },
+    job: {
+        value: 'designer'
+    }
+})
 
-john.calculateAge();
-jane.calculateAge();
-mark.calculateAge();
-
-console.log(john.lastName);
-console.log(jane.lastName);
-console.log(mark.lastName);
-
-console.log(john.hasOwnProperty('job')); // true
-console.log(john.hasOwnProperty('lastName')); // false
-
-console.log(john instanceof Person); // true
+console.log(jane)
