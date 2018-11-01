@@ -1,29 +1,28 @@
-// Passing functions as arguments
+// Functions returning functions
 
-const years = [1990, 1965, 1937, 2005, 1998]
 
-const arrayCalc = (array, fn) => {
-    const arrRes = [];
-    for (let i = 0; i < array.length; i++) {
-        arrRes.push(fn(array[i]))
-    }
-    return arrRes;
-}
+const interviewQuestion = job => {
+    if (job === 'designer') {
+        return name =>
+            console.log(`${name}, can you please explain what UX design is?`);
 
-const calculateAge = element => 2018 - element;
-const isFullAge = element => element >= 18
-const maxHeartRate = element => {
-    if (element >= 18 && element <= 81) {
-        return Math.round(206.9 - (0.67 * element))
+    } else if (job === 'teacher') {
+        return name =>
+            console.log(`What subject do you teach, ${name}?`)
+
     } else {
-        return 'You are too old or too young, sorry'
+        return name =>
+            console.log(`Hello ${name}, what do you do?`)
+
     }
 }
 
-const ages = arrayCalc(years, calculateAge)
-const isFullAges = arrayCalc(ages, isFullAge)
-const maximumHeartRate = arrayCalc(ages, maxHeartRate)
+const teacherQuestion = interviewQuestion('teacher')
+const designerQuestion = interviewQuestion('designer')
 
-console.log(ages)
-console.log(isFullAges)
-console.log(maximumHeartRate)
+teacherQuestion('John')
+designerQuestion('Krystian')
+designerQuestion('Mark')
+designerQuestion('Mike')
+
+interviewQuestion('teacher')('Krystian')
