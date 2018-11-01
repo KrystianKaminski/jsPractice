@@ -1,28 +1,19 @@
-// Functions returning functions
+// IIFE
+
+// const game = () => {
+//     const score = Math.random() * 10;
+//     console.log(score >= 5)
+// }
 
 
-const interviewQuestion = job => {
-    if (job === 'designer') {
-        return name =>
-            console.log(`${name}, can you please explain what UX design is?`);
+(function () {
+    const score = Math.random() * 10;
+    console.log(score >= 5)
+})();
 
-    } else if (job === 'teacher') {
-        return name =>
-            console.log(`What subject do you teach, ${name}?`)
+// console.log(score);
 
-    } else {
-        return name =>
-            console.log(`Hello ${name}, what do you do?`)
-
-    }
-}
-
-const teacherQuestion = interviewQuestion('teacher')
-const designerQuestion = interviewQuestion('designer')
-
-teacherQuestion('John')
-designerQuestion('Krystian')
-designerQuestion('Mark')
-designerQuestion('Mike')
-
-interviewQuestion('teacher')('Krystian')
+(function (goodLuck) {
+    const score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck)
+})(5);
