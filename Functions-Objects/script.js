@@ -1,55 +1,59 @@
-// BIND CALL AND APPLY
+// CHALLENGE CONSOLE GAME
 
-const john = {
-    name: 'John',
-    age: 26,
-    job: 'teacher',
-    presentation: function (style, timeOfDay) {
-        if (style === 'formal') {
-            console.log(`Good ${timeOfDay} ladies and gentlemen! I'm ${this.name}, I'm a ${this.job} and I'm ${this.age} years old.`)
-        } else if (style === 'friendly') {
-            console.log(`Hey! What's up? I'm ${this.name}, I'm a ${this.job} and I'm ${this.age} years old. Have a nice ${timeOfDay}.`)
-        }
+function Question(question, answers, correct) {
+    this.question = question
+    this.answers = answers
+    this.correct = correct
+}
+
+const question1 = new Question(
+    'What is my favourite football player?',
+    ['Alessandro Del Piero', 'Paolo Maldini', 'Alexandre Pato', 'Andriy Shevchenko', 'Zlatan Ibrahimović'],
+    4
+)
+
+const question2 = new Question(
+    'Where am I from?',
+    ['Poland', 'Italy', 'Germany', 'Sweden'],
+    0
+)
+
+const question3 = new Question(
+    'What am I going to be?',
+    ['Programmer', 'Economist', 'Student', 'Politician'],
+    0
+)
+
+const allQuestions = [question1, question2, question3];
+let score = 0;
+const nextQuestion = () => {
+    const random = Math.round(Math.random() * 2)
+    allQuestions[random].showQuestion()
+}
+
+Question.prototype.showQuestion = function () {
+    console.log(this.question)
+    this.answers.forEach((element, index, array) =>
+        console.log(`${index}: ${array[index]}`)
+    )
+    this.rightAnswer()
+}
+
+Question.prototype.rightAnswer = function () {
+    const prompting = prompt(('What is the correct answer?'))
+    if (parseInt(prompting) === this.correct) {
+        score++;
+        console.log(`Your actual score is ${score}`)
+        console.log('Right answer!')
+        nextQuestion()
+    } else if (prompting === 'exit') {
+        console.log('Thank You!')
+        console.log(`Your final score is ${score}`)
+    } else {
+        console.log('Try again')
+        console.log(`Your actual score is ${score}`)
+        nextQuestion()
     }
 }
 
-const emily = {
-    name: 'Emily',
-    age: 35,
-    job: 'designer'
-}
-
-
-john.presentation('formal', 'morning');
-
-john.presentation.call(emily, 'friendly', 'afternoon')
-
-john.presentation.apply(emily, ['friendly', 'afternoon'])
-
-const johnFriendly = john.presentation.bind(john, 'friendly')
-
-johnFriendly('morning')
-johnFriendly('night')
-
-const emilyFormal = john.presentation.bind(emily, 'formal')
-
-emilyFormal('morning')
-emilyFormal('noon')
-
-const years = [1990, 1965, 1937, 2005, 1998]
-
-const arrayCalc = (array, fn) => {
-    const arrRes = [];
-    for (let i = 0; i < array.length; i++) {
-        arrRes.push(fn(array[i]))
-    }
-    return arrRes;
-}
-
-const calculateAge = element => 2018 - element;
-const isFullAge = (limit, element) => element >= limit
-
-const ages = arrayCalc(years, calculateAge)
-const fullJapan = arrayCalc(ages, isFullAge.bind(this, 20))
-console.log(ages)
-console.log(fullJapan)
+nextQuestion()
