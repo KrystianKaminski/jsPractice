@@ -9,12 +9,14 @@
 </head>
 
 <body>
-    <h1>Repeat the Same Item Multiple Times</h1>
+    <h1>Phone Number Formatting</h1>
     <script>
-        const repeat = (item, times) => {
-            const array = Array(times)
-                .fill(item)
-            return array
+        const formatPhoneNumber = array => {
+            const returnArray = array.toString().split(',')
+            const first = returnArray.slice(0, 3).join('');
+            const second = returnArray.slice(3, 6).join('');
+            const third = returnArray.slice(6, 10).join('')
+            return `(${first}) ${second}-${third}`
         }
     </script>
 </body>
