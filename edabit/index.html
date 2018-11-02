@@ -9,16 +9,18 @@
 </head>
 
 <body>
-    <h1>Phone Number Formatting</h1>
+    <h1>Find the largest numbers in a group of arrays</h1>
     <script>
-        const formatPhoneNumber = array => {
-            const returnArray = array.toString().split(',')
-            const first = returnArray.slice(0, 3).join('');
-            const second = returnArray.slice(3, 6).join('');
-            const third = returnArray.slice(6, 10).join('')
-            return `(${first}) ${second}-${third}`
+        const findLargestNums = arr => {
+            const newArr = []
+            const array = arr.forEach(element => {
+                element.sort((a, b) => b - a)
+                newArr.push(element[0])
+            })
+            return newArr;
         }
     </script>
+
 </body>
 
 </html>
