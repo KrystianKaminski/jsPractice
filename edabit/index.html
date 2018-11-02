@@ -9,14 +9,13 @@
 </head>
 
 <body>
-    <h1>Calculate the mean</h1>
+    <h1>Return the highest and lowest numbers</h1>
     <script>
-        const mean = arr => {
-            const initialValue = 0
-            const returnArray = arr.reduce((accumulator, currentValue, index, src) => accumulator + currentValue /
-                src.length,
-                initialValue)
-            return Number(Number(returnArray).toFixed(2))
+        const highLow = str => {
+            const array = str.split(' ')
+                .sort((a, b) => a - b)
+            const returnArray = `${array[array.length - 1]} ${array[0]}`
+            return returnArray
         }
     </script>
 
