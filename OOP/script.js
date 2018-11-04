@@ -1,118 +1,75 @@
-// Prototype
+// Tworzenie klasy
 
-const Person = function (name, age) {
-    this.name = name
-    this.age = age
-    this.children = []
-    // this.addChildren = function (name) {
-    //     this.children.push(name)
-    // }
-}
+// class Family {
+//     constructor(name) {
+//         this.name = name
+//         this.addMemberr = function () {
+//             console.log('Wywołane z instancji')
+//         }
+//     }
+//     addMember() {
+//         console.log('Wywołane z prototypu')
+//     }
 
-Person.prototype.addChildren = function (name) {
-    this.children.push(name)
-}
+// }
+
+// const savastano = new Family('Savastano')
+// savastano.addMember()
+
+// const Family2 = function (name) {
+//     this.name = name
+// }
+
+// const migliaccio = new Family2('Migliaccio')
+// Family2.prototype.addMember = function() {
+
+// }
 
 
-const filippo = new Person('Filippo', 20)
-const monica = new Person('Monica', 30)
+// Wyrazenie klasy
 
-filippo.addChildren('Giorgio')
-monica.addChildren('Maria')
+const Family2 = function () {}
 
-// CZYM JEST PROTOTYP
-
-// Prototyp to obiekt w funkcji konstruktora, współdzielony przez wszystkie egzemplarze.
-// Kazdy egzemplarz ma dostęp do obiektu prototypu
-
-// CO ZAWIERA PROTOTYP? 
-
-// Domyślnie właściwość constructor (funkcja konstruktora lub klasa) + to co zostanie przypisane do prototypu
-
-function Player() {
-
-}
-
-class User {
+function Family3() {
 
 }
 
-Player.prototype.age = 25
-const leonardo = new Player
-const gonzalo = new User
+class Family4 {
 
-// console.log(leonardo.constructor)
-// console.log(gonzalo.constructor)
-
-const alessio = new leonardo.constructor()
-
-// DODANIE ELEMENTÓW DO PROTOTYPU (KONSTRUKTOR)
-
-function Citizen(country, citizenship) {
-    this.country = country
-    this.citizenship = citizenship
-    // this.changeCitizenship = function (citizenship) {
-    //     this.citizenship = citizenship
-    //     console.log(`Zmiana za pomocą metody w instancji na obywatelstwo ${this.citizenship}`)
-    // }
 }
 
-Citizen.prototype.changeCitizenship = function (citizenship) {
-    this.citizenship = citizenship
-    console.log(`Zmiana za pomocą metody w prototypie na obywatelstwo ${this.citizenship}`)
+const Family5 = class {
+
 }
 
-// this nabiera znaczenia w momencie kiedy jest wywoływane
+// const cutrone = new Family5()
+// console.log(cutrone)
 
-const alex = new Citizen('Polska', 'polskie')
-const franco = new Citizen('France', 'german')
-// alex.changeCitizenship('italian')
-
-// console.log(franco.toString())
-
-// Prototyp zawsze aktualny (referencja)
-// console.log(alex.age) // undefined
-// Citizen.prototype.age = 21
-// console.log(alex.age) // 21
-
-// Przysłanianie metod
-
-// Rozszerzanie prototypu wbudowanych konstruktorów
-
-const arr = [5, 6, 7, 8]
-Array.prototype.delete = function (index) {
-    return this.splice(index, 1)
+class Family {
+    constructor(members, ...names) {
+        this.members = members
+        this.names = names
+    }
+    addMember(newMember) {
+        this.names.push(newMember)
+        this.members++
+        console.log(`Został dodany nowy członek rodziny: ${newMember}. Rodzina liczy teraz ${this.members} osób`)
+    }
+    static makeFamily(...members) {
+        return members
+    }
 }
 
-arr.delete(1)
 
+const savastano = new Family(3, 'Pietro', 'Imma', 'Gennaro')
+console.log(savastano)
 
-// PROTOTYPE CHAIN
+savastano.addMember('Ciro')
 
-// console.log(arr.__proto__) // prototyp Array
-// console.log(arr.__proto__.__proto__) // prototyp Object
+const cutrone = new Family(1, 'Patrick')
+console.log(cutrone)
+cutrone.addMember('Patrizia')
 
-// console.log(arr.__proto__.__proto__.__proto__) // null
+// Metody statyczne
 
-// console.log(franco.__proto__.__proto__.__proto__) // null
-
-// KILKA ISTOTNYCH ELEMENTÓW
-
-// console.log(arr instanceof Array)
-// console.log(arr instanceof Object)
-// console.log(arr instanceof Citizen)
-// console.log(franco instanceof Citizen)
-// console.log(franco instanceof Object)
-// console.log(franco instanceof Function)
-// console.log(Citizen instanceof Function)
-
-// Object.getPrototypeOf
-
-console.log(Object.getPrototypeOf(arr))
-console.log(arr.__proto__.constructor)
-console.log(Object.getPrototypeOf(franco))
-
-//
-
-const gianluigi = new Citizen()
-// gianluigi.__proto__ = Citizen.prototype
+console.log(Family.makeFamily('Gonzalo', 'Los'))
