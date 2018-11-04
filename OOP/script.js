@@ -1,55 +1,32 @@
-// KLASY I DZIEDZICZENIE
+// 'use strict'
+// THIS
 
-// Klasy nadrzędne (superclass), klasy pochodne, podrzędne (subclassy) i dziedziczenie
+this // global object -> window
 
-
-
-// 1. Zbudowanie prototypu klasy dziedziczącej w oparciu o klasę po której dziedziczy (powstaje łańcuch prototypów)
-// 2. Wywołanie konstruktora klasy(klas) nadrzędnych
-
-
-// Słowo kluczowe extends - wskazanie klasy po której nowa klasa ma dziedziczyć
-
-// Słowo kluczowe super - słuzy do rozszerzenia konstruktora nowej klasy o konstruktor klasy z której dziedziczy
-
-class Animal {
-    constructor(age, name) {
-        this.age = age
-        this.name = name
-    }
-    breath() {
-        console.log('Animal breaths')
-    }
+const fn = function () {
+    console.log(this.name) // odnosi się do window
 }
 
-const zwierze = new Animal(2, 'Paolo')
-zwierze.__proto__ === Animal.prototype
+//fn() // this nabiera wiązania w chwili wywołania. Jest wywoływane na nowo // wiąze się z kontekstem w którym tę funkcję wywołujemy
 
-class Mammal extends Animal {
-    constructor(age, name, hairs) {
-        super(age, name) // wywołujemy konstruktor klasy nadrzędnej
-        this.hairs = hairs
-    }
-    drinkMilk() {
-        console.log('Mammals drinks milk')
-    }
-    speak() {
-        console.log('sdasdasda')
-    }
+const obj = {
+    name: 'Gianni',
+    showName: fn
 }
 
-const ssak = new Mammal(3, 'Max', 'blond')
-ssak.breath()
-ssak.drinkMilk()
+const fun = fn
+//fun()
 
-class Human extends Mammal {
-    constructor(age, name, hairs, language) {
-        super(age, name, hairs)
-        this.language = language
-    }
-    speak() {
-        console.log('Human speaks')
-    }
-}
+obj.showName()
 
-const człowiek = new Human(30, 'Marco', 'Dark', 'Italian')
+const outside = obj.showName
+outside() // error with use strict, otherwise ''
+
+document.addEventListener('click', () => {
+    console.log(this)
+    const inside = function () {
+        'use strict'
+        console.log(this)
+    }
+    inside()
+})
