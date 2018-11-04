@@ -1,32 +1,46 @@
-// 'use strict'
-// THIS
+// this to odwołanie do obiektu
 
-this // global object -> window
+// dzięki this nie ma potrzeby uzywania osobnych funkcji dla kazdego obiektu -> mozliwosc wielokrotnego uzycia tej samej funkcji
 
-const fn = function () {
-    console.log(this.name) // odnosi się do window
+
+function showName() {
+    console.log(this.name)
 }
 
-//fn() // this nabiera wiązania w chwili wywołania. Jest wywoływane na nowo // wiąze się z kontekstem w którym tę funkcję wywołujemy
-
-const obj = {
-    name: 'Gianni',
-    showName: fn
+const carlo = {
+    name: 'Carlo',
+    showName: showName
 }
 
-const fun = fn
-//fun()
+const angelina = {
+    name: 'Angelina',
+    showName: showName
+}
 
-obj.showName()
+// carlo.showName()
+// angelina.showName()
 
-const outside = obj.showName
-outside() // error with use strict, otherwise ''
+// Wiązanie this powstaje w chwili wykonywania metody, nie jest zalezne od miejsca deklaracji, tylko od sposobu wywołania
 
-document.addEventListener('click', () => {
+// W chwili wykonywania funkcji powstaje kontekst
+
+function one() {
     console.log(this)
-    const inside = function () {
-        'use strict'
+    this.name = 'first'
+    return this.name
+}
+
+const object1 = {
+    two: one,
+    four: function () {
         console.log(this)
     }
-    inside()
-})
+}
+
+object1.two()
+
+const three = object1.two
+
+three();
+
+const five = object1.four
