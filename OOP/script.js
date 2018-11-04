@@ -41,8 +41,8 @@ Player.prototype.age = 25
 const leonardo = new Player
 const gonzalo = new User
 
-console.log(leonardo.constructor)
-console.log(gonzalo.constructor)
+// console.log(leonardo.constructor)
+// console.log(gonzalo.constructor)
 
 const alessio = new leonardo.constructor()
 
@@ -66,14 +66,14 @@ Citizen.prototype.changeCitizenship = function (citizenship) {
 
 const alex = new Citizen('Polska', 'polskie')
 const franco = new Citizen('France', 'german')
-alex.changeCitizenship('italian')
+// alex.changeCitizenship('italian')
 
-console.log(franco.toString())
+// console.log(franco.toString())
 
 // Prototyp zawsze aktualny (referencja)
-console.log(alex.age) // undefined
-Citizen.prototype.age = 21
-console.log(alex.age) // 21
+// console.log(alex.age) // undefined
+// Citizen.prototype.age = 21
+// console.log(alex.age) // 21
 
 // Przysłanianie metod
 
@@ -85,3 +85,34 @@ Array.prototype.delete = function (index) {
 }
 
 arr.delete(1)
+
+
+// PROTOTYPE CHAIN
+
+// console.log(arr.__proto__) // prototyp Array
+// console.log(arr.__proto__.__proto__) // prototyp Object
+
+// console.log(arr.__proto__.__proto__.__proto__) // null
+
+// console.log(franco.__proto__.__proto__.__proto__) // null
+
+// KILKA ISTOTNYCH ELEMENTÓW
+
+// console.log(arr instanceof Array)
+// console.log(arr instanceof Object)
+// console.log(arr instanceof Citizen)
+// console.log(franco instanceof Citizen)
+// console.log(franco instanceof Object)
+// console.log(franco instanceof Function)
+// console.log(Citizen instanceof Function)
+
+// Object.getPrototypeOf
+
+console.log(Object.getPrototypeOf(arr))
+console.log(arr.__proto__.constructor)
+console.log(Object.getPrototypeOf(franco))
+
+//
+
+const gianluigi = new Citizen()
+// gianluigi.__proto__ = Citizen.prototype
