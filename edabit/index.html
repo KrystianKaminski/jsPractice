@@ -9,13 +9,11 @@
 </head>
 
 <body>
-    <h1>Return the highest and lowest numbers</h1>
+    <h1>Find the maximum, minimum, length and average values</h1>
     <script>
-        const highLow = str => {
-            const array = str.split(' ')
-                .sort((a, b) => a - b)
-            const returnArray = `${array[array.length - 1]} ${array[0]}`
-            return returnArray
+        const minMaxLengthAverage = array => {
+            const result = array.join(',');
+            console.log(result)
         }
     </script>
 
