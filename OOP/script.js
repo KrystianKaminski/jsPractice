@@ -1,13 +1,21 @@
-const Car = function (name) {
+// Prototype
+
+const Person = function (name, age) {
     this.name = name
+    this.age = age
+    this.children = []
+    // this.addChildren = function (name) {
+    //     this.children.push(name)
+    // }
 }
 
-const maluch = new Car('maluch')
-const polonez = new Car('polonez')
+Person.prototype.addChildren = function (name) {
+    this.children.push(name)
+}
 
-// 1. Nowy pusty obiekt
-// 2. Następuje wiązanie this z utworzonym obiektem
-// 3. Powstaje właściwość __proto__
-// 4. Wywołanie funkcji i przypisanie do zmiennej
 
-maluch.name = 'zabytek'
+const filippo = new Person('Filippo', 20)
+const monica = new Person('Monica', 30)
+
+filippo.addChildren('Giorgio')
+monica.addChildren('Maria')
