@@ -1,59 +1,68 @@
-// Wiązanie domyślne this to obiekt globalny, 'use strict' na to nie pozwala (error/undefined)
+// Problem utraty wiązania
 
-// const thisExample = function () {
-//     // 'use strict'
-//     console.log(this.example, this)
-//     const inside = function () {
-//         console.log(this.example, this)
-//     }
-//     inside()
-// }
-
-// thisExample()
-
-// wiązanie niejawne
-
-const user = {
-    age: 45,
-    showName() {
-        console.log(this.age)
-    },
-    showName2: function () {
-        console.log(this.age)
+const felipe = {
+    children: ['Alessio', 'Giovanna'],
+    showChildren: function () {
+        this.children.forEach(function (name, index) {
+            console.log(this.children[index])
+        })
     }
 }
 
-const stefano = {
-    age: 20,
-    showName: user.showName
+// felipe.showChildren()
+
+
+// that = this
+
+const felipe1 = {
+    children: ['Alessio', 'Giovanna'],
+    showChildren: function () {
+        const that = this
+        this.children.forEach(function (name, index) {
+            console.log(that.children[index])
+        })
+    }
 }
 
-// console.log(stefano.showName())
+// felipe1.showChildren()
 
 
-// wiązanie jawne : call i apply
+// for of loop
 
-
-const human = {
-    pesel: 12321312312312
+const felipe2 = {
+    children: ['Alessio', 'Giovanna'],
+    showChildren: function () {
+        for (const child of this.children) {
+            console.log(child)
+        }
+    }
 }
 
-const showPesel = function () {
-    console.log(`Twój pesel to: ${this.pesel}`)
+// felipe2.showChildren()
+
+// arrow fn
+
+const felipe3 = {
+    children: ['Alessio', 'Giovanna'],
+    showChildren: function () {
+        this.children.forEach((name, index) => {
+            console.log(this.children[index])
+        })
+    }
 }
 
-// showPesel() // undefined
-// showPesel.call(human)
+// felipe3.showChildren()
 
-const showUser = function (name) {
-    console.log(`Uzytkownik ${name} ma ${this.pesel}`)
+
+// bind
+
+const felipe4 = {
+    children: ['Alessio', 'Giovanna'],
+    showChildren: function () {
+        this.children.forEach(function (name, index) {
+            console.log(this.children[index])
+        }.bind(this))
+    }
 }
 
-showUser.call(human, 'Tomasso')
-
-
-// wiązanie twarde - BIND
-
-const showPeselUser = showPesel.bind(human)
-
-showPeselUser()
+felipe4.showChildren()
