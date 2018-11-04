@@ -1,75 +1,55 @@
-// Tworzenie klasy
+// KLASY I DZIEDZICZENIE
 
-// class Family {
-//     constructor(name) {
-//         this.name = name
-//         this.addMemberr = function () {
-//             console.log('Wywołane z instancji')
-//         }
-//     }
-//     addMember() {
-//         console.log('Wywołane z prototypu')
-//     }
-
-// }
-
-// const savastano = new Family('Savastano')
-// savastano.addMember()
-
-// const Family2 = function (name) {
-//     this.name = name
-// }
-
-// const migliaccio = new Family2('Migliaccio')
-// Family2.prototype.addMember = function() {
-
-// }
+// Klasy nadrzędne (superclass), klasy pochodne, podrzędne (subclassy) i dziedziczenie
 
 
-// Wyrazenie klasy
 
-const Family2 = function () {}
+// 1. Zbudowanie prototypu klasy dziedziczącej w oparciu o klasę po której dziedziczy (powstaje łańcuch prototypów)
+// 2. Wywołanie konstruktora klasy(klas) nadrzędnych
 
-function Family3() {
 
-}
+// Słowo kluczowe extends - wskazanie klasy po której nowa klasa ma dziedziczyć
 
-class Family4 {
+// Słowo kluczowe super - słuzy do rozszerzenia konstruktora nowej klasy o konstruktor klasy z której dziedziczy
 
-}
-
-const Family5 = class {
-
-}
-
-// const cutrone = new Family5()
-// console.log(cutrone)
-
-class Family {
-    constructor(members, ...names) {
-        this.members = members
-        this.names = names
+class Animal {
+    constructor(age, name) {
+        this.age = age
+        this.name = name
     }
-    addMember(newMember) {
-        this.names.push(newMember)
-        this.members++
-        console.log(`Został dodany nowy członek rodziny: ${newMember}. Rodzina liczy teraz ${this.members} osób`)
-    }
-    static makeFamily(...members) {
-        return members
+    breath() {
+        console.log('Animal breaths')
     }
 }
 
+const zwierze = new Animal(2, 'Paolo')
+zwierze.__proto__ === Animal.prototype
 
-const savastano = new Family(3, 'Pietro', 'Imma', 'Gennaro')
-console.log(savastano)
+class Mammal extends Animal {
+    constructor(age, name, hairs) {
+        super(age, name) // wywołujemy konstruktor klasy nadrzędnej
+        this.hairs = hairs
+    }
+    drinkMilk() {
+        console.log('Mammals drinks milk')
+    }
+    speak() {
+        console.log('sdasdasda')
+    }
+}
 
-savastano.addMember('Ciro')
+const ssak = new Mammal(3, 'Max', 'blond')
+ssak.breath()
+ssak.drinkMilk()
 
-const cutrone = new Family(1, 'Patrick')
-console.log(cutrone)
-cutrone.addMember('Patrizia')
+class Human extends Mammal {
+    constructor(age, name, hairs, language) {
+        super(age, name, hairs)
+        this.language = language
+    }
+    speak() {
+        console.log('Human speaks')
+    }
+}
 
-// Metody statyczne
-
-console.log(Family.makeFamily('Gonzalo', 'Los'))
+const człowiek = new Human(30, 'Marco', 'Dark', 'Italian')
