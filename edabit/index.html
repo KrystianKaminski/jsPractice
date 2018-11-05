@@ -9,18 +9,15 @@
 </head>
 
 <body>
-    <h1>Is it Time for Milk and Cookies?</h1>
+    <h1>Sorting descening number</h1>
     <script>
-        const timeForMilkAndCookies = date => {
-            const a = new Date(date)
-            const b = a.getMonth()
-            const c = a.getDate()
+        const sortDecending = num => {
+            const newNum = num.toString()
+                .split('')
+                .sort((a, b) => b - a)
+                .join('')
 
-            if (b === 11 && c === 24) {
-                return true
-            } else {
-                return false
-            }
+            return Number(newNum)
         }
     </script>
 
