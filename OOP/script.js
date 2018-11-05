@@ -1,68 +1,69 @@
-// Problem utraty wiązania
+// 1. Konwencja
+class Cat {
+  constructor(color) {
+    this._color = color;
+  }
+  getColor() {
+    return this._color;
+  }
 
-const felipe = {
-    children: ['Alessio', 'Giovanna'],
-    showChildren: function () {
-        this.children.forEach(function (name, index) {
-            console.log(this.children[index])
-        })
+  setColor(color) {
+    if (typeof color === "string") {
+      return (this._color = color);
+    } else {
+      console.log("wartosc nieprawdlowa");
     }
+  }
 }
 
-// felipe.showChildren()
+// const catty = new Cat("czarny")
+// console.log(catty.color)
+// catty.setColor("white")
+// console.log(catty.color)
 
+// 2. Closure
 
-// that = this
-
-const felipe1 = {
-    children: ['Alessio', 'Giovanna'],
-    showChildren: function () {
-        const that = this
-        this.children.forEach(function (name, index) {
-            console.log(that.children[index])
-        })
-    }
+class Dog {
+  constructor(name, dogColor) {
+    this.name = name;
+    let color = dogColor;
+    this.getColor = () => color;
+    this.setColor = value => (color = value);
+  }
 }
 
-// felipe1.showChildren()
+const fafik = new Dog("fafik", "brown");
 
+// console.log(fafik.color); // undefined
+// console.log(fafik.getColor()); // brown
+// console.log(fafik.setColor("black"));
 
-// for of loop
+// Drugi przykład
 
-const felipe2 = {
-    children: ['Alessio', 'Giovanna'],
-    showChildren: function () {
-        for (const child of this.children) {
-            console.log(child)
-        }
-    }
+class Car {
+  constructor(name, _counter = 100000, _year = 2000) {
+    this.name = name;
+    let _counter = counter;
+    let _year = year;
+    let _changeNumber = 0;
+
+    this.getYear = () => _year;
+    this.setCounter = function (value) {
+      _changeNumber++;
+      return _counter = value;
+    };
+
+    this.getCounter = function () {
+      if (_changeNumber) alert(`be aware${_changeNumber}`);
+      return _counter;
+    };
+    this.showCarAge = function (year) {
+      return year - _year;
+    };
+  }
 }
 
-// felipe2.showChildren()
-
-// arrow fn
-
-const felipe3 = {
-    children: ['Alessio', 'Giovanna'],
-    showChildren: function () {
-        this.children.forEach((name, index) => {
-            console.log(this.children[index])
-        })
-    }
-}
-
-// felipe3.showChildren()
-
-
-// bind
-
-const felipe4 = {
-    children: ['Alessio', 'Giovanna'],
-    showChildren: function () {
-        this.children.forEach(function (name, index) {
-            console.log(this.children[index])
-        }.bind(this))
-    }
-}
-
-felipe4.showChildren()
+const polonez = new Car('polonez caro', 20000, 2008);
+console.log(polonez.getYear());
+console.log(polonez.setCounter(10000));
+console.log(polonez.getCounter());

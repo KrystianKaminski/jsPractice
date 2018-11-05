@@ -9,11 +9,18 @@
 </head>
 
 <body>
-    <h1>Find the maximum, minimum, length and average values</h1>
+    <h1>Is it Time for Milk and Cookies?</h1>
     <script>
-        const minMaxLengthAverage = array => {
-            const result = array.join(',');
-            console.log(result)
+        const timeForMilkAndCookies = date => {
+            const a = new Date(date)
+            const b = a.getMonth()
+            const c = a.getDate()
+
+            if (b === 11 && c === 24) {
+                return true
+            } else {
+                return false
+            }
         }
     </script>
 
