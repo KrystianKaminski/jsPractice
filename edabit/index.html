@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <h1>Sorting descening number</h1>
+    <h1>Is the average of all elements in the array a whole number?</h1>
     <script>
-        const sortDecending = num => {
-            const newNum = num.toString()
-                .split('')
-                .sort((a, b) => b - a)
-                .join('')
+        const isAvgWhole = arr => {
+            const newArr = arr.reduce((acc, current) => {
+                return acc + current / arr.length
+            }, 0)
 
-            return Number(newNum)
+            if (Number.isInteger(newArr)) {
+                return true
+            } else {
+                return false
+            }
         }
     </script>
 
