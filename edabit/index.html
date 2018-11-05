@@ -9,18 +9,21 @@
 </head>
 
 <body>
-    <h1>Is the average of all elements in the array a whole number?</h1>
+    <h1>Min, max, length and mean -> sort and reduce doesn't pass the tests on edabit :)</h1>
     <script>
-        const isAvgWhole = arr => {
-            const newArr = arr.reduce((acc, current) => {
-                return acc + current / arr.length
-            }, 0)
+        const minMaxLengthAverage = arr => {
+            let min = Math.min(...arr)
+            let max = Math.max(...arr)
+            let length = arr.length
+            let a = 0
+            let sum = arr.map((el, i, arr) => {
+                a += el
+            })
+            let mean = a / length
 
-            if (Number.isInteger(newArr)) {
-                return true
-            } else {
-                return false
-            }
+            // sort and reduce methods doesn't pass the test on edabit engine
+
+            return [min, max, length, mean]
         }
     </script>
 
