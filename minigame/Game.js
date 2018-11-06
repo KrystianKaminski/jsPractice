@@ -23,6 +23,7 @@ function Game(selector, boardDimension) {
 Game.prototype.init = function () {
     this.makeGameBoard()
     this.render()
+    this.startListeningArrowKeys()
 }
 
 Game.prototype.makeGameBoard = function () {
@@ -34,6 +35,42 @@ Game.prototype.makeGameBoard = function () {
 
     this.gameBoard = boardElement
     this.container.appendChild(boardElement)
+}
+
+Game.prototype.move = function (y, x) {
+    const newPlayerPosition = {
+        x: this.playerPosition.x + x,
+        y: this.playerPosition.y + y
+    }
+    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 0
+    this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] = 1
+
+    this.playerPosition = newPlayerPosition
+
+}
+
+Game.prototype.startListeningArrowKeys = function () {
+    window.addEventListener(
+        'keydown',
+        event => {
+            event.preventDefault()
+
+            switch (event.key) {
+                case 'ArrowUp':
+                    this.move(-1, 0)
+                    break
+                case 'ArrowDown':
+                    this.move(1, 0)
+                    break
+                case 'ArrowLeft':
+                    this.move(0, -1)
+                    break
+                case 'ArrowRight':
+                    this.move(0, 1)
+                    break
+            }
+        }
+    )
 }
 
 Game.prototype.render = function () {
