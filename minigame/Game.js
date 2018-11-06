@@ -1,11 +1,20 @@
-function Game(selector) {
+function Game(selector, boardDimension) {
     this.container = selector ? document.querySelector(selector) :
         document.querySelector('body')
 
+
+    this.boardDimension = 3
+    this.cellDimension = (100 / this.boardDimension) + '%'
+    this.playerPosition = {
+        x: 1,
+        y: 0
+    }
     this.gameBoardArray = [
-        [0, 0],
-        [0, 1]
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
     ]
+    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 1
     this.gameBoard = null
 
     this.init()
@@ -37,8 +46,8 @@ Game.prototype.render = function () {
 
 Game.prototype.renderSingleCell = function (cell) {
     const cellElement = document.createElement('div')
-    cellElement.style.width = '50%'
-    cellElement.style.height = '50%'
+    cellElement.style.width = this.cellDimension
+    cellElement.style.height = this.cellDimension
 
     if (cell === 0) {
         cellElement.style.backgroundColor = 'grey'
