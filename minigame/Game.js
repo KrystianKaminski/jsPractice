@@ -37,11 +37,18 @@ Game.prototype.makeGameBoard = function () {
     this.container.appendChild(boardElement)
 }
 
-Game.prototype.move = function (y, x) {
+Game.prototype.checkIfMoveIsAvailable = function (y, x) {
     const newPlayerPosition = {
         x: this.playerPosition.x + x,
         y: this.playerPosition.y + y
     }
+
+    if (this.gameBoardArray[newPlayerPosition.y] !== undefined && this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] !== undefined) {
+        this.move(newPlayerPosition)
+    }
+}
+
+Game.prototype.move = function (newPlayerPosition) {
     this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 0
     this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] = 1
 
@@ -58,16 +65,16 @@ Game.prototype.startListeningArrowKeys = function () {
 
             switch (event.key) {
                 case 'ArrowUp':
-                    this.move(-1, 0)
+                    this.checkIfMoveIsAvailable(-1, 0)
                     break
                 case 'ArrowDown':
-                    this.move(1, 0)
+                    this.checkIfMoveIsAvailable(1, 0)
                     break
                 case 'ArrowLeft':
-                    this.move(0, -1)
+                    this.checkIfMoveIsAvailable(0, -1)
                     break
                 case 'ArrowRight':
-                    this.move(0, 1)
+                    this.checkIfMoveIsAvailable(0, 1)
                     break
             }
         }
