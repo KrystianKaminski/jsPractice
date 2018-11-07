@@ -9,8 +9,7 @@ function Game(selector, boardDimension) {
         x: 1,
         y: 0
     }
-    this.gameBoardArray = this.makeEmptyGameBoardArray()
-    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 'X'
+    this.gameBoardArray = []
     this.gameBoard = null
 
     this.init()
@@ -18,17 +17,35 @@ function Game(selector, boardDimension) {
 
 Game.prototype.init = function () {
     this.makeGameBoard()
+    this.makeEmptyGameBoardArray()
+    this.placeObstaclesInToGameBoardArray()
+    this.placePlayer()
     this.render()
     this.startListeningArrowKeys()
 }
 
+Game.prototype.placePlayer = function () {
+    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 'X'
+}
+
 Game.prototype.makeEmptyGameBoardArray = function () {
-    return (
+    this.gameBoardArray = (
         Array(this.boardDimension)
         .fill(1)
-        .map(row => Array(this.boardDimension)
-            .fill(1))
+        .map(
+            row => Array(this.boardDimension).fill(1)
+        )
     )
+}
+
+
+Game.prototype.placeObstaclesInToGameBoardArray = function () {
+    this.gameBoardArray = this.gameBoardArray
+        .map(row =>
+            row.map(cell =>
+                Math.random() > 0.25 ? cell : 0
+            )
+        )
 }
 
 Game.prototype.makeGameBoard = function () {
@@ -43,21 +60,23 @@ Game.prototype.makeGameBoard = function () {
 }
 
 Game.prototype.checkIfMoveIsAvailable = function (y, x) {
+    const playerPosition = this.getPlayerPosition()
     const newPlayerPosition = {
-        x: this.playerPosition.x + x,
-        y: this.playerPosition.y + y
+        x: playerPosition.x + x,
+        y: playerPosition.y + y
     }
+
 
     if (this.gameBoardArray[newPlayerPosition.y] && this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x]) {
         this.move(newPlayerPosition)
     }
 }
 
+
 Game.prototype.move = function (newPlayerPosition) {
+    const playerPosition = this.getPlayerPosition()
     this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 1
     this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] = 'X'
-
-    this.playerPosition = newPlayerPosition
     this.render()
 
 }
@@ -112,4 +131,18 @@ Game.prototype.renderSingleCell = function (cell) {
             break
     }
     this.gameBoard.appendChild(cellElement)
+}
+
+Game.prototype.getPlayerPosition = function () {
+    return this.gameBoardArray
+        .reduce(
+            (reduced, row, indexOfRow, arr) => {
+                const indexOfXInRow = row.indexOf('X')
+                if (indexOfRow !== -1) {
+                    reduced.x = indexOfXInRow
+                    reduced.y = indexOfRow
+                }
+                return reduced
+            }, {}
+        )
 }
