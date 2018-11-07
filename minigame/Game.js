@@ -3,17 +3,13 @@ function Game(selector, boardDimension) {
         document.querySelector('body')
 
 
-    this.boardDimension = 3
+    this.boardDimension = boardDimension
     this.cellDimension = (100 / this.boardDimension) + '%'
     this.playerPosition = {
         x: 1,
         y: 0
     }
-    this.gameBoardArray = [
-        [1, 1, 1],
-        [1, 1, 1],
-        [1, 0, 1]
-    ]
+    this.gameBoardArray = this.makeEmptyGameBoardArray()
     this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 'X'
     this.gameBoard = null
 
@@ -24,6 +20,15 @@ Game.prototype.init = function () {
     this.makeGameBoard()
     this.render()
     this.startListeningArrowKeys()
+}
+
+Game.prototype.makeEmptyGameBoardArray = function () {
+    return (
+        Array(this.boardDimension)
+        .fill(1)
+        .map(row => Array(this.boardDimension)
+            .fill(1))
+    )
 }
 
 Game.prototype.makeGameBoard = function () {
