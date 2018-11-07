@@ -46,6 +46,7 @@ Game.prototype.move = function (y, x) {
     this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] = 1
 
     this.playerPosition = newPlayerPosition
+    this.render()
 
 }
 
@@ -74,6 +75,7 @@ Game.prototype.startListeningArrowKeys = function () {
 }
 
 Game.prototype.render = function () {
+    this.gameBoard.innerHTML = ''
     this.gameBoardArray.forEach(row => {
         row.forEach(cell => {
             this.renderSingleCell(cell)
