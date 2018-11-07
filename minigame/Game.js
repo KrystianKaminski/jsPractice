@@ -10,11 +10,11 @@ function Game(selector, boardDimension) {
         y: 0
     }
     this.gameBoardArray = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
+        [1, 1, 1],
+        [1, 1, 1],
+        [1, 0, 1]
     ]
-    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 1
+    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 'X'
     this.gameBoard = null
 
     this.init()
@@ -43,14 +43,14 @@ Game.prototype.checkIfMoveIsAvailable = function (y, x) {
         y: this.playerPosition.y + y
     }
 
-    if (this.gameBoardArray[newPlayerPosition.y] !== undefined && this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] !== undefined) {
+    if (this.gameBoardArray[newPlayerPosition.y] && this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x]) {
         this.move(newPlayerPosition)
     }
 }
 
 Game.prototype.move = function (newPlayerPosition) {
-    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 0
-    this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] = 1
+    this.gameBoardArray[this.playerPosition.y][this.playerPosition.x] = 1
+    this.gameBoardArray[newPlayerPosition.y][newPlayerPosition.x] = 'X'
 
     this.playerPosition = newPlayerPosition
     this.render()
@@ -95,10 +95,16 @@ Game.prototype.renderSingleCell = function (cell) {
     cellElement.style.width = this.cellDimension
     cellElement.style.height = this.cellDimension
 
-    if (cell === 0) {
-        cellElement.style.backgroundColor = 'grey'
-    } else {
-        cellElement.style.backgroundColor = 'black'
+    switch (cell) {
+        case 0:
+            cellElement.style.backgroundColor = 'red'
+            break
+        case 1:
+            cellElement.style.backgroundColor = 'grey'
+            break
+        case 'X':
+            cellElement.style.backgroundColor = 'black'
+            break
     }
     this.gameBoard.appendChild(cellElement)
 }
