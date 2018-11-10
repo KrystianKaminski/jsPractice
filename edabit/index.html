@@ -9,21 +9,15 @@
 </head>
 
 <body>
-    <h1>Min, max, length and mean -> sort and reduce doesn't pass the tests on edabit :)</h1>
+    <h1>Sort numbers in ascending order</h1>
     <script>
-        const minMaxLengthAverage = arr => {
-            let min = Math.min(...arr)
-            let max = Math.max(...arr)
-            let length = arr.length
-            let a = 0
-            let sum = arr.map((el, i, arr) => {
-                a += el
+        const sortNumsAscending = arr => {
+
+            if (arr === [] || arr === null) return []
+            const newArray = arr.sort((a, b) => {
+                return b < a
             })
-            let mean = a / length
-
-            // sort and reduce methods doesn't pass the test on edabit engine
-
-            return [min, max, length, mean]
+            return newArray
         }
     </script>
 
