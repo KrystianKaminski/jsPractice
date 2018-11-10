@@ -9,15 +9,25 @@
 </head>
 
 <body>
-    <h1>Sort numbers in ascending order</h1>
+    <h1>H4ck3r Sp34k</h1>
     <script>
-        const sortNumsAscending = arr => {
+        String.prototype.allReplace = function (obj) {
+            let retStr = this
+            for (let x in obj) {
+                retStr = retStr.replace(new RegExp(x, 'g'), obj[x])
+            }
+            return retStr
+        }
 
-            if (arr === [] || arr === null) return []
-            const newArray = arr.sort((a, b) => {
-                return b < a
+        const hackerSpeak = str => {
+            const newStr = str.allReplace({
+                'a': 4,
+                'e': 3,
+                'i': 1,
+                'o': 0,
+                's': 5
             })
-            return newArray
+            return newStr
         }
     </script>
 
