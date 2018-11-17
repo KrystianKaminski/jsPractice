@@ -31,13 +31,47 @@
         */
 
         const body = document.body
-        const renderA = (where, what) => {
+        // const renderA = (where, what) => {
+        //     where.innerHTML = what
+        // }
+        // const randomNumber = () => {
+        //     return `Losowa liczba z zakresu 1-10: ${Math.round(Math.random() * 10)}`
+        // }
+        // renderA(body, randomNumber())
+
+
+        const renderB = (where, what) => {
             where.innerHTML = what
         }
-        const randomNumber = () => {
-            return `Losowa liczba z zakresu 1-10: ${Math.round(Math.random() * 10)}`
+
+        let min = Math.min(2, 18, -10, 0, 11, 95, -29, 80, 22, 91, -91, 47, 81, 33, 59, -102, 21, 20, -14, 60)
+
+        let absMin = Math.abs(min)
+
+        let squareVal = Math.sqrt(absMin)
+
+        let roundVal = Math.round(squareVal)
+
+        let field = Math.PI * Math.pow(roundVal, 2)
+
+        let ceil = Math.ceil(field)
+
+        const mathObjectPractice = () => {
+            return `Najmniejsza wartość z podanego zestawu liczb: ${min}
+            <br>
+            Wartość bezwzględna tej liczby: ${absMin}
+            <br>
+            Pierwiastek kwadratowy: ${squareVal}
+            <br>
+            Zaokrąglony do najblizszej całkowitej: ${roundVal}
+            <br>
+            Pole koła: ${field}
+            <br>
+            Zaokrąglone w góre: ${ceil}
+            `
         }
-        renderA(body, randomNumber())
+
+        renderB(body, mathObjectPractice())
     </script>
 
 </body>
