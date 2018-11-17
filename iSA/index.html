@@ -13,33 +13,31 @@
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 10.
+    Przetwarzanie struktur danych - zadanie 11.
     <script>
+        // a)
         /*
 		
-		Mając tablicę obiektów (tzn. tablicę, której elementami są obiekty), skorzystaj ze statycznej metody Object.entries(), by otrzymać tablicę, której elementami są nazwy oraz wartości poszczególnych elementów wyjściowej tablicy obiektów osoby.
+        - Napisz funkcję, która wyprowadzi na ekran losową cyfrę (tj. losową liczbę całkowitą z przedziału od 0 do 9 włącznie).
 		
-		Wynik operacji wyprowadź na ekran, korzystając z metody .log() obiektu console.
-		*/
-        const osoby = [{
-                imie: 'Jan',
-                nazwisko: 'Kowalski',
-                wiek: 18,
-                imieNazwisko: function () {
-                    return this.imie + ' ' + this.nazwisko;
-                }
-            },
-            {
-                imie: 'Maria',
-                nazwisko: 'Nowak',
-                wiek: 21,
-                imieNazwisko: function () {
-                    return this.imie + ' ' + this.nazwisko;
-                }
-            }
-        ];
+        - Wykorzystaj napisaną przez siebie funkcję renderującą o nazwie renderA.
+        */
 
-        console.log(Object.entries(osoby))
+        // b)
+        /*
+		
+        - Korzystając z zestawu 20 liczb (2, 18, -10, 0, 11, 95, -29, 80, 22, 91, -91, 47, 81, 33, 59, -102, 21, 20, -14, 60), uzyskaj liczbę o najmniejszej wartości, oblicz jej wartość bezwzględną, wyciągnij z niej pierwiastek kwadratowy, zaokrąglij do najbliższej liczby całkowitej, a następnie oblicz pole powierzchni koła o promieniu równym otrzymanej w wyniku przeprowadzonych operacji liczbie. Otrzymany wynik zaokrąglij do liczby całkowitej w górę. Wykorzystaj jak najwięcej poznanych metod wbudowanego obiektu Math.
+        - Wykorzystaj napisaną przez siebie funkcję renderującą o nazwie renderB.
+        */
+
+        const body = document.body
+        const renderA = (where, what) => {
+            where.innerHTML = what
+        }
+        const randomNumber = () => {
+            return `Losowa liczba z zakresu 1-10: ${Math.round(Math.random() * 10)}`
+        }
+        renderA(body, randomNumber())
     </script>
 
 </body>
