@@ -7,58 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        table {
-            border-collapse: collapse;
-        }
 
-        table th {
-            background-color: #f1f1f1;
-        }
-
-        table th,
-        table td {
-            border: 1px solid #ccc;
-            padding: 15px;
-        }
     </style>
 
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 7.
+    Przetwarzanie struktur danych - zadanie 8.
     <script>
         /*
-		Mając tablicę obiektów z osobami, wygeneruj dynamicznie tabelę HTML, umieszczając w poszczególnych komórkach jej wierszy dane dotyczące poszczególnych osób (tj. imię i nazwisko oraz wiek).
+		
+		Mając tablicę z kontynentami, skorzystaj ze statycznej metody Object.keys(), by otrzymać tablicę, której elementami są indeksy poszczególnych elementów wyjściowej tablicy kontynenty.
+		
+		Wynik operacji wyprowadź na ekran, korzystając z metody .log() obiektu console.
         */
 
-        const osoby = [{
-                imie: 'Jan',
-                nazwisko: 'Kowalski',
-                wiek: 18,
-                imieNazwisko: function () {
-                    return this.imie + ' ' + this.nazwisko;
-                }
-            },
-            {
-                imie: 'Maria',
-                nazwisko: 'Nowak',
-                wiek: 21,
-                imieNazwisko: function () {
-                    return this.imie + ' ' + this.nazwisko;
-                }
-            }
-        ];
+        const kontynenty = ['Europa', 'Ameryka Północna', 'Azja', 7, true];
 
-        const render = () => {
-            let html = `<table><thead><tr><th>Imie i Nazwisko</th><th>Wiek</th></thead>`
-
-            for (element in osoby) {
-                html += `<tr><td>${osoby[element].imieNazwisko()}</td><td>${osoby[element].wiek}</td>`
-            }
-            return html
-
-        }
-        document.body.innerHTML = render()
+        console.log(Object.keys(kontynenty))
     </script>
 
 </body>
