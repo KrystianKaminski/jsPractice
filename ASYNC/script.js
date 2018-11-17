@@ -23,12 +23,17 @@ async function getWeatherAW(woeid) {
         const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
         const data = await result.json()
         // console.log(data)
-        const tomorrosw = data.consolidated_weather[1]
+        const tomorrow = data.consolidated_weather[1]
         console.log(`Temperatures tomorrow in ${data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}`)
+        return data
 
     } catch (error) {
         alert(error)
     }
 }
 getWeatherAW(2487956)
-getWeatherAW(44418)
+let dataLondon = getWeatherAW(44418)
+    .then(data => {
+        dataLondon = data
+        console.log(dataLondon)
+    })
