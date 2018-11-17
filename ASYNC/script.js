@@ -29,18 +29,16 @@ const getRelated = publisher => {
     })
 }
 
-getIDs
-    .then(IDs => {
-        console.log(IDs)
-        return getRecipe(IDs[2])
-    })
-    .then(recipe => {
-        console.log(recipe)
-        return getRelated('Krystian')
-    })
-    .then(recipe => {
-        console.log(recipe)
-    })
-    .catch(error => {
-        console.log(`Error!`)
-    })
+async function getRecipesAW() {
+    const IDs = await getIDs;
+    console.log(IDs)
+    const recipe = await getRecipe(IDs[2])
+    console.log(recipe)
+    const related = await getRelated('Krystian')
+    console.log(related)
+
+    return recipe
+}
+
+getRecipesAW()
+    .then(result => console.log(result))
