@@ -9,25 +9,24 @@
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 5.
+    Przetwarzanie struktur danych - zadanie 6.
     <script>
         /*
-		Mając tablicę z owocami, "zredukuj" ją w ten sposób, by skleić wszystkie jej elementy w jeden wyraz. Otrzymany w ten sposób wyraz wytłuść. Poprzedź go napisem Owoce sklejone w jeden wyraz: (co ważne, skorzystaj w tym celu z opcjonalnego drugiego parametru metody .reduce(), którym jest initial value).
+		Mając tablicę z owocami, zwróć pierwszy napotkany element tablicy, którego nazwa zaczyna się na "A". Otrzymany w ten sposób napis wytłuść. Poprzedź go napisem Pierwszą literą jest A: .
 		
-		Wyprowadź na ekran otrzymany w ten sposób wyraz, umieszczając go jako zawartość body. Dodatkowo, doklej pod spodem informację o zwróconym typie danych. Otrzymany w ten sposób typ danych wytłuść.
-		
-		Skorzystaj z - wywoływanej na rzecz tablicy, którą chcemy "zredukować" do pojedynczej wartości - metody .reduce().
+		Wyprowadź na ekran otrzymany w ten sposób napis, umieszczając go jako zawartość body. Dodatkowo, doklej pod spodem informację o zwróconym typie danych. Otrzymany w ten sposób typ danych wytłuść.
+		Skorzystaj z - wywoływanej na rzecz tablicy, z której chcemy zwrócić pierwszy napotkany element spełniający kryteria - metody .find().
         */
 
         const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit'];
 
         const div = document.createElement('div')
-        div.innerHTML = `Owoce sklejone w jeden wyraz:`
+
         const render = () => {
-            const newArray = owoce.reduce((acc, val) => {
-                return div.innerHTML += `<strong>${val}</strong>`
-            }, 0)
-            div.innerHTML += ` Zwrócony typ danych: <strong>${typeof newArray}</strong>`
+            const ret = owoce.find((el, index, array) => {
+                if (el[0] === ('A')) return el
+            })
+            div.innerHTML = `Pierwszą literą jest A: ${ret}, zwrócony typ danych: <strong>${typeof ret}</strong>`
         }
         render()
         document.body.appendChild(div)
