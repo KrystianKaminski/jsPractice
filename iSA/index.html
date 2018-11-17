@@ -9,29 +9,31 @@
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 2.
+    Przetwarzanie struktur danych - zadanie 3.
     <script>
         /*
-		Mając tablicę z owocami, tak przetwórz każdy jej element, by wygenerować listę numerowaną odpowiadającą poszczególnym elementom tablicy. Wygenerowany w ten sposób kod HTML umieść jako zawartość body.
+		Mając tablicę z owocami, stwórz na jej podstawie nową tablicę, dopisując do każdego jej elementu frazę - obszar uprawy: tereny tropikalne. Nazwę owocu wytłuść.
 		
-		Każdy element listy powinien zawierać nazwę odpowiedniego elementu z tablicy oraz (w nawiasie) jego indeks z tablicy. Dodatkowo, doklej pod spodem informację o zwróconym typie danych. Otrzymany w ten sposób typ danych wytłuść.
+		Wyprowadź na ekran tę nową tablicę, umieszczając ją jako zawartość body. Dodatkowo, do tej zawartości doklej pod spodem informację potwierdzającą, że ta nowa tablica jest rzeczywiście tablicą. Otrzymaną w ten sposób wartość logiczną wytłuść.
 		
-		Skorzystaj z - wywoływanej na rzecz tablicy - metody .forEach().
+		Skorzystaj z - wywoływanej na rzecz oczywiście tej oryginalnej tablicy - metody .map().
         */
+        const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit']
 
-        const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit'];
-
-        const ol = document.createElement('ol')
+        const ul = document.createElement('ul')
 
         const render = () => {
-            owoce.forEach((owoc, index) => {
+            owoce.map((owoc) => {
                 const li = document.createElement('li')
-                li.innerHTML = `${owoc}: (${index}) <b>${typeof owoc}</b>`
-                ol.appendChild(li)
+                li.innerHTML = `<strong>${owoc}</strong>: obszar uprawy - tereny tropikalne`
+                ul.appendChild(li)
             })
         }
+        const paragraph = document.createElement('p')
+        paragraph.innerHTML = `Czy jest tablicą? <strong>${Array.isArray(owoce)}</strong>`
         render()
-        document.body.appendChild(ol)
+        document.body.appendChild(ul)
+        document.body.appendChild(paragraph)
     </script>
 
 </body>
