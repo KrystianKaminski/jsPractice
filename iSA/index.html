@@ -9,29 +9,25 @@
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 4.
+    Przetwarzanie struktur danych - zadanie 5.
     <script>
         /*
-		Mając tablicę z owocami, przefiltruj ją w ten sposób, by zostały zwrócone tylko te jej elementy, których nazwa jest dłuższa bądź równa 6 znaków, a krótsza niż 10 znaków.
+		Mając tablicę z owocami, "zredukuj" ją w ten sposób, by skleić wszystkie jej elementy w jeden wyraz. Otrzymany w ten sposób wyraz wytłuść. Poprzedź go napisem Owoce sklejone w jeden wyraz: (co ważne, skorzystaj w tym celu z opcjonalnego drugiego parametru metody .reduce(), którym jest initial value).
 		
-		Wyprowadź na ekran otrzymane w ten sposób elementy, umieszczając je jako zawartość body. Dodatkowo, do tej zawartości doklej pod spodem informację o liczbie elementów spełniających kryteria. Otrzymaną w ten sposób liczbę wytłuść. Do tej zawartości doklej też pod spodem informację potwierdzającą, że przefiltrowane elementy są tablicą. Otrzymaną w ten sposób wartość logiczną wytłuść.
+		Wyprowadź na ekran otrzymany w ten sposób wyraz, umieszczając go jako zawartość body. Dodatkowo, doklej pod spodem informację o zwróconym typie danych. Otrzymany w ten sposób typ danych wytłuść.
 		
-		Skorzystaj z - wywoływanej na rzecz tablicy, którą chcemy przefiltrować - metody .filter().
-		*/
+		Skorzystaj z - wywoływanej na rzecz tablicy, którą chcemy "zredukować" do pojedynczej wartości - metody .reduce().
+        */
 
         const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit'];
 
         const div = document.createElement('div')
-
+        div.innerHTML = `Owoce sklejone w jeden wyraz:`
         const render = () => {
-            const newArray = owoce.filter(owoc => {
-                if (owoc.length >= 6 && owoc.length < 10) {
-                    return true
-                }
-                div.innerHTML = `${owoc}`
-            })
-            div.innerHTML += `, liczba elementów spełniających kryteria: <strong>${newArray.length}</strong>`
-            div.innerHTML += ` Czy jest tablicą? <strong>${Array.isArray(newArray)}</strong>`
+            const newArray = owoce.reduce((acc, val) => {
+                return div.innerHTML += `<strong>${val}</strong>`
+            }, 0)
+            div.innerHTML += ` Zwrócony typ danych: <strong>${typeof newArray}</strong>`
         }
         render()
         document.body.appendChild(div)
