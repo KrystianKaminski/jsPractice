@@ -6,30 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table th {
+            background-color: #f1f1f1;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+    </style>
+
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 6.
+    Przetwarzanie struktur danych - zadanie 7.
     <script>
         /*
-		Mając tablicę z owocami, zwróć pierwszy napotkany element tablicy, którego nazwa zaczyna się na "A". Otrzymany w ten sposób napis wytłuść. Poprzedź go napisem Pierwszą literą jest A: .
-		
-		Wyprowadź na ekran otrzymany w ten sposób napis, umieszczając go jako zawartość body. Dodatkowo, doklej pod spodem informację o zwróconym typie danych. Otrzymany w ten sposób typ danych wytłuść.
-		Skorzystaj z - wywoływanej na rzecz tablicy, z której chcemy zwrócić pierwszy napotkany element spełniający kryteria - metody .find().
+		Mając tablicę obiektów z osobami, wygeneruj dynamicznie tabelę HTML, umieszczając w poszczególnych komórkach jej wierszy dane dotyczące poszczególnych osób (tj. imię i nazwisko oraz wiek).
         */
 
-        const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit'];
-
-        const div = document.createElement('div')
+        const osoby = [{
+                imie: 'Jan',
+                nazwisko: 'Kowalski',
+                wiek: 18,
+                imieNazwisko: function () {
+                    return this.imie + ' ' + this.nazwisko;
+                }
+            },
+            {
+                imie: 'Maria',
+                nazwisko: 'Nowak',
+                wiek: 21,
+                imieNazwisko: function () {
+                    return this.imie + ' ' + this.nazwisko;
+                }
+            }
+        ];
 
         const render = () => {
-            const ret = owoce.find((el, index, array) => {
-                if (el[0] === ('A')) return el
-            })
-            div.innerHTML = `Pierwszą literą jest A: ${ret}, zwrócony typ danych: <strong>${typeof ret}</strong>`
+            let html = `<table><thead><tr><th>Imie i Nazwisko</th><th>Wiek</th></thead>`
+
+            for (element in osoby) {
+                html += `<tr><td>${osoby[element].imieNazwisko()}</td><td>${osoby[element].wiek}</td>`
+            }
+            return html
+
         }
-        render()
-        document.body.appendChild(div)
+        document.body.innerHTML = render()
     </script>
 
 </body>
