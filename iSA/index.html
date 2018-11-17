@@ -9,31 +9,32 @@
 </head>
 
 <body>
-    Przetwarzanie struktur danych - zadanie 3.
+    Przetwarzanie struktur danych - zadanie 4.
     <script>
         /*
-		Mając tablicę z owocami, stwórz na jej podstawie nową tablicę, dopisując do każdego jej elementu frazę - obszar uprawy: tereny tropikalne. Nazwę owocu wytłuść.
+		Mając tablicę z owocami, przefiltruj ją w ten sposób, by zostały zwrócone tylko te jej elementy, których nazwa jest dłuższa bądź równa 6 znaków, a krótsza niż 10 znaków.
 		
-		Wyprowadź na ekran tę nową tablicę, umieszczając ją jako zawartość body. Dodatkowo, do tej zawartości doklej pod spodem informację potwierdzającą, że ta nowa tablica jest rzeczywiście tablicą. Otrzymaną w ten sposób wartość logiczną wytłuść.
+		Wyprowadź na ekran otrzymane w ten sposób elementy, umieszczając je jako zawartość body. Dodatkowo, do tej zawartości doklej pod spodem informację o liczbie elementów spełniających kryteria. Otrzymaną w ten sposób liczbę wytłuść. Do tej zawartości doklej też pod spodem informację potwierdzającą, że przefiltrowane elementy są tablicą. Otrzymaną w ten sposób wartość logiczną wytłuść.
 		
-		Skorzystaj z - wywoływanej na rzecz oczywiście tej oryginalnej tablicy - metody .map().
-        */
-        const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit']
+		Skorzystaj z - wywoływanej na rzecz tablicy, którą chcemy przefiltrować - metody .filter().
+		*/
 
-        const ul = document.createElement('ul')
+        const owoce = ['Kiwi', 'Mango', 'Ananas', 'Grapefruit'];
+
+        const div = document.createElement('div')
 
         const render = () => {
-            owoce.map((owoc) => {
-                const li = document.createElement('li')
-                li.innerHTML = `<strong>${owoc}</strong>: obszar uprawy - tereny tropikalne`
-                ul.appendChild(li)
+            const newArray = owoce.filter(owoc => {
+                if (owoc.length >= 6 && owoc.length < 10) {
+                    return true
+                }
+                div.innerHTML = `${owoc}`
             })
+            div.innerHTML += `, liczba elementów spełniających kryteria: <strong>${newArray.length}</strong>`
+            div.innerHTML += ` Czy jest tablicą? <strong>${Array.isArray(newArray)}</strong>`
         }
-        const paragraph = document.createElement('p')
-        paragraph.innerHTML = `Czy jest tablicą? <strong>${Array.isArray(owoce)}</strong>`
         render()
-        document.body.appendChild(ul)
-        document.body.appendChild(paragraph)
+        document.body.appendChild(div)
     </script>
 
 </body>
