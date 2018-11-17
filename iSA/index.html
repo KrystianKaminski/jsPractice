@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    Przetwarzanie struktur danych - zadanie 1.
+    <script>
+        // Mając tablicę z nazwami kontynentów, posortuj ją alfabetycznie, a następnie odwróć kolejność jej elementów
+
+        const kontynenty = ['Europa', 'Azja', 'Antarktyda', 'Afryka', 'Australia i Oceania', 'Ameryka Północna',
+            'Ameryka Południowa'
+        ];
+
+        const sortedContinents = kontynenty.sort((a, b) => a > b)
+        console.log(sortedContinents)
+
+        const sortedInOtherWay = sortedContinents.reverse()
+        console.log(sortedInOtherWay)
+
+        // Mając tablicę z liczbami, napisz funkcję, która posortuj je rosnąco. Następnie napisz funkcję, która posortuje je malejąco.
+
+        const numbers = [1, 12, 13, 0, 2, 20, 9, 3, 22, 10, -2, 11];
+
+        const sortedNumbers = numbers.sort((a, b) => a - b)
+        console.log(sortedNumbers)
+
+        const sortedNumbersInOtherWay = numbers.sort((a, b) => b - a)
+        console.log(sortedNumbersInOtherWay)
+    </script>
+
+</body>
+
+</html>
