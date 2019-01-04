@@ -9,16 +9,15 @@
 </head>
 
 <body>
-    <h1>Capitalize the Names</h1>
+    <h1>Return the Middle Character(s) of a String</h1>
     <script>
-        const capMe = arr => {
-            const allItemsToLowerCase = arr.map(item => item.toLowerCase())
-            const capitalizeFirstLetter = allItemsToLowerCase.map(item => {
-                const firstLetter = item[0].toUpperCase()
-                const restOfName = item.slice(1)
-                return firstLetter + restOfName
-            })
-            return capitalizeFirstLetter
+        const getMiddle = str => {
+            if (str.length % 2 === 0) {
+                return str.slice(str.length / 2 - 1, str.length / 2 + 1)
+            } else {
+                return str.slice(str.length / 2, str.length / 2 + 1)
+            }
+
         }
     </script>
 
