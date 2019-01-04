@@ -9,10 +9,24 @@
 </head>
 
 <body>
-    <h1>Format Number with Comma(s) Separating Thousands</h1>
+    <h1>X's and O's</h1>
     <script>
-        const formatNum = num => {
-            return num.toLocaleString()
+        const XO = str => {
+            const returnValue = str.toLowerCase()
+            const regexX = /[x]/g
+            const regexO = /[o]/g
+            const xS = returnValue.match(regexX)
+            const oS = returnValue.match(regexO)
+
+
+            if (!xS && oS) return false
+            if (!oS && xS) return false
+            if (!xS && !oS) return true
+            if (xS.length === oS.length) {
+                return true
+            } else {
+                return false
+            }
         }
     </script>
 
