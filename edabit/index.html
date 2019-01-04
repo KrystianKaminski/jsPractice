@@ -9,24 +9,16 @@
 </head>
 
 <body>
-    <h1>X's and O's</h1>
+    <h1>Capitalize the Names</h1>
     <script>
-        const XO = str => {
-            const returnValue = str.toLowerCase()
-            const regexX = /[x]/g
-            const regexO = /[o]/g
-            const xS = returnValue.match(regexX)
-            const oS = returnValue.match(regexO)
-
-
-            if (!xS && oS) return false
-            if (!oS && xS) return false
-            if (!xS && !oS) return true
-            if (xS.length === oS.length) {
-                return true
-            } else {
-                return false
-            }
+        const capMe = arr => {
+            const allItemsToLowerCase = arr.map(item => item.toLowerCase())
+            const capitalizeFirstLetter = allItemsToLowerCase.map(item => {
+                const firstLetter = item[0].toUpperCase()
+                const restOfName = item.slice(1)
+                return firstLetter + restOfName
+            })
+            return capitalizeFirstLetter
         }
     </script>
 
