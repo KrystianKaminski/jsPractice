@@ -9,17 +9,15 @@
 </head>
 
 <body>
-    <h1>Write a function to calculate the factorial of a number</h1>
+    <h1>Remove Duplicates from Array</h1>
     <script>
-        const factorial = x => {
-            if (x === 0) return 1
-            if (x < 0) return -1
-            else {
-                return (x * factorial(x - 1))
-            }
+        const removeDups = arr => {
+            const uniqueValues = arr.reduce((a, b) => {
+                if (a.indexOf(b) < 0) a.push(b)
+                return a
+            }, [])
+            return uniqueValues
         }
-
-        factorial(5)
     </script>
 
 </body>
