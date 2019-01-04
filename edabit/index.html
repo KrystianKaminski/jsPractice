@@ -9,15 +9,10 @@
 </head>
 
 <body>
-    <h1>Is the Number Symmetrical?</h1>
+    <h1>Format Number with Comma(s) Separating Thousands</h1>
     <script>
-        const isSymmetrical = num => {
-            const reverseNumber = Number(num.toString().split('').reverse().join(''))
-            if (num === reverseNumber) {
-                return true
-            } else {
-                return false
-            }
+        const formatNum = num => {
+            return num.toLocaleString()
         }
     </script>
 
