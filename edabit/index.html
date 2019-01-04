@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <h1>Return the Middle Character(s) of a String</h1>
+    <h1>​​​​​AlTeRnAtInG CaPs​​​​​</h1>
     <script>
-        const getMiddle = str => {
-            if (str.length % 2 === 0) {
-                return str.slice(str.length / 2 - 1, str.length / 2 + 1)
-            } else {
-                return str.slice(str.length / 2, str.length / 2 + 1)
-            }
-
+        const alternatingCaps = str => {
+            const returnValue = str.split('')
+            const changeCases = returnValue.map((letter, index) => {
+                if (index % 2 === 0) {
+                    return letter.toUpperCase()
+                } else {
+                    return letter.toLowerCase()
+                }
+            })
+            return changeCases.join('')
         }
     </script>
 
