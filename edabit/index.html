@@ -9,14 +9,15 @@
 </head>
 
 <body>
-    <h1>Remove Duplicates from Array</h1>
+    <h1>Is the Number Symmetrical?</h1>
     <script>
-        const removeDups = arr => {
-            const uniqueValues = arr.reduce((a, b) => {
-                if (a.indexOf(b) < 0) a.push(b)
-                return a
-            }, [])
-            return uniqueValues
+        const isSymmetrical = num => {
+            const reverseNumber = Number(num.toString().split('').reverse().join(''))
+            if (num === reverseNumber) {
+                return true
+            } else {
+                return false
+            }
         }
     </script>
 
