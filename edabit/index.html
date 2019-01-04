@@ -9,18 +9,12 @@
 </head>
 
 <body>
-    <h1>​​​​​AlTeRnAtInG CaPs​​​​​</h1>
+    <h1>​​​​​Remove the Special Characters from a String</h1>
     <script>
-        const alternatingCaps = str => {
-            const returnValue = str.split('')
-            const changeCases = returnValue.map((letter, index) => {
-                if (index % 2 === 0) {
-                    return letter.toUpperCase()
-                } else {
-                    return letter.toLowerCase()
-                }
-            })
-            return changeCases.join('')
+        const removeSpecialCharacters = str => {
+            const regex = /[^A-Za-z0-9_-\s]/g
+            const newValue = str.replace(regex, '')
+            return newValue
         }
     </script>
 
